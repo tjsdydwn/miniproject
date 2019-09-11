@@ -1,0 +1,243 @@
+@charset "UTF-8";
+/* CSS RESET */
+body,
+form,
+div,
+label,
+input,
+span,
+select,
+option,
+button {
+    margin: 0;
+    padding: 0;
+}
+
+/* DESIGN AREA */
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #FFD654, #E85D4D);
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #adadad;
+    border-radius: 0px;
+    font-size: 15px;
+}
+
+option {
+    font-size: 15px;
+}
+
+input {
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid #adadad;
+
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.form-join {
+    position: absolute;
+    box-sizing: border-box;
+    width: 600px;
+    height: 800px;
+    background-color: #ffffff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 40px 50px;
+    box-shadow: 10px 10px 5px 5px #00000070;
+}
+
+.form-join h1 {
+    text-align: center;
+}
+
+.box {
+    position: relative;
+    width: 480px;
+    margin: 15px 0px;
+    text-align: left;
+    margin-bottom: 25px;
+    /* 나중에 삭제해야함 */
+    /* border: 1px dotted gray; */
+}
+
+.box span[data-placeholder]::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    content: attr(data-placeholder);
+    font-size: 12px;
+    color: #E85D4D;
+    transform: translateX(-50%);
+    display: none;
+}
+
+.box span.show[data-placeholder]::after {
+    display: block;
+}
+
+.box label {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 15px;
+    width: 75px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.tbox input {
+    width: 300px;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.rbox input {
+    display: inline-block;
+    padding: 10px;
+}
+
+.rbox .exp {
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.box .email {
+    display: inline-block;
+    width: 150px;
+}
+
+.box .email input[type=text] {
+    width: inherit;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.box .email select {
+    width: inherit;
+    height: 30px;
+}
+
+span.at {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+
+.email .hide {
+    display: none;
+}
+
+.box .tel {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    margin: 0 15px;
+}
+
+.box .tel select {
+    width: inherit;
+    height: 30px;
+    text-align: center;
+}
+
+.box .tel input {
+    width: inherit;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.box .ttel::before {
+    position: absolute;
+    left: -15px;
+    font-size: 15px;
+    top: 50%;
+    content: "-";
+    transform: translateY(-50%);
+}
+
+.box-addr {
+    display: inline-block;
+    width: 350px;
+}
+
+.box-addr-zipcode input,
+.box-addr-zipcode button {
+    width: 120px;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.box-addr-zipcode button {
+    border: none;
+    outline: none;
+    background: linear-gradient(120deg, #FFD654, #E85D4D, #FFD654);
+    background-size: 200%;
+    transition: .5s;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    color:#ffffff;
+}
+
+.box-addr-zipcode button:hover {
+    background-position: right;
+}
+
+.box-addr-addr input {
+    width: 100%;
+    display: block;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.box:last-child {
+    text-align: center;
+}
+
+#btn-join,
+input[type=reset] {
+    width: 120px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    margin: 5px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    background: linear-gradient(120deg, #FFD654, #E85D4D, #FFD654);
+    background-size: 200%;
+    transition: .5s;
+    color:#ffffff;
+}
+
+#btn-join:hover,
+input[type=reset]:hover {
+    background-position: right;
+    cursor: pointer;
+}

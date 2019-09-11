@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+/* CSS RESET */
+body,
+div,
+header,
+section,
+footer,
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+}
+
+.wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    width: 1204px;
+    border: 1px solid gray;
+}
+
+/* Header Area */
+header {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    height: 150px;
+	width: 100%;
+	text-align: center;
+}
+
+header>h3 {
+    display: inline-block;
+}
+
+header>a {
+    display: inline-block;
+}
+
+section {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    height: 500px;
+    width: 100%;
+}
+
+/* Section Area */
+section>div {
+    float: left;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    height: 100%;
+}
+
+.left {
+    box-sizing: border-box;
+    width: 300px;
+    height: 100%;
+}
+
+.lnb-menu>ul {
+    list-style: none;
+}
+
+.right {
+    width: 900px;
+    height: 100%;
+}
+
+footer {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    height: 150px;
+}

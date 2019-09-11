@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+body,
+form,
+h1,
+div,
+input,
+span,
+a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #FFD654, #E85D4D);
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+form.form-login {
+    position: absolute;
+    width: 400px;
+    height: 550px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 70px 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 15px 15px 5px 5px #00000070;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+div.box {
+    position: relative;
+    margin: 30px 0;
+    border-bottom: 2px solid #adadad;
+}
+
+div.box input {
+    font-size: 15px;
+    color: #333333;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 0 5px;
+    height: 40px;
+}
+
+div.box span[data-placeholder]::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: .5s;
+}
+
+div.box span[data-placeholder]::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(120deg, #FFD654, #E85D4D);
+    transition: .5s;
+}
+
+input.focus+span[data-placeholder]::before {
+    top: -5px;
+}
+
+input.focus+span[data-placeholder]::after {
+    width: 100%;
+}
+
+div.box span[data-message]::after {
+    content: attr(data-message);
+    position: absolute;
+    font-size: 13px;
+    color: #E85D4D;
+    visibility: hidden;
+}
+
+input.show~span[data-message]::after {
+    visibility: visible;
+}
+
+input.btn-log {
+    display: block;
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    background: linear-gradient(120deg, #FFD654, #E85D4D, #FFD654);
+    background-size: 200%;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+input.btn-log:hover {
+    background-position: right;
+}
+
+div.bottom-text {
+    border: 1px solid #E85D4D;
+    border-radius: 5px;
+    padding: 8px 8px;
+}
+
+div.bottom-text a {
+    color: #adadad;
+}
+
+div.bottom-text a:hover {
+    color: #E85D4D;
+}
