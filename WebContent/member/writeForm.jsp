@@ -12,8 +12,10 @@
             <tr>
                 <th scope="row">이름</th>
                 <td>
-                    <input type="text" id="name" name="name" class="form-control">
-                    <div class="invalid-tooltip">이름을 입력해주세요.</div>
+                	<div class="input-group">
+	                    <input type="text" id="name" name="name" class="form-control">
+	                    <div class="invalid-tooltip">이름을 입력해주세요.</div>
+            		</div>
                 </td>
             </tr>
             <tr>
@@ -21,23 +23,27 @@
                 <td>
                     <div class="input-group">
                         <input type="text" name="id" id="id" class="form-control">
-                        <div class="invalid-tooltip">아이디를 입력해주세요.</div>
-                        <button type="button" id="btnCheckId" class="btn btn-secondary input-group-append">중복체크</button>
+                        <div class="invalid-tooltip">ID확인을 진행해주세요.</div>
+                        <button type="button" id="btnCheckId" class="btn btn-secondary input-group-append">ID확인</button>
                     </div>
                 </td>
             </tr>
             <tr>
                 <th scope="row">비밀번호</th>
                 <td>
-                    <input type="password" name="pwd" id="pwd" class="form-control">
-                    <div class="invalid-tooltip">비밀번호를 입력해주세요.</div>
+                	<div class="input-group">
+	                    <input type="password" name="pwd" id="pwd" class="form-control">
+	                    <div class="invalid-tooltip">비밀번호를 입력해주세요.</div>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <th scope="row">비밀번호 재확인</th>
-                <td>
-                    <input type="password" name="repwd" id="repwd" class="form-control">
-                    <div class="invalid-tooltip">동일한 비밀번호를 입력해주세요.</div>
+                <td class="input-group">
+                	<div class="input-group">
+	                    <input type="password" name="repwd" id="repwd" class="form-control">
+	                    <div class="invalid-tooltip">동일한 비밀번호를 입력해주세요.</div>
+                	</div>
                 </td>
             </tr>
             <tr>

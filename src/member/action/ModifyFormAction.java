@@ -16,12 +16,14 @@ public class ModifyFormAction implements CommandProcess {
 		//Data 꺼내기
 		HttpSession session = request.getSession();
 		String id = "" + session.getAttribute("memId");
+		System.out.println(id);
 		
 		//DB
 		MemberDTO memberDTO = MemberDAO.getInstance().login(id);
 		request.setAttribute("memberDTO", memberDTO);
+		request.setAttribute("display", "/member/modifyForm.jsp");
 		
-		return "/member/modifyForm.jsp";
+		return "/main/index.jsp";
 	}
 
 }

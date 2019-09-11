@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberSQL">
+	<select id="login" parameterType="Map" resultType="member">
+		SELECT * FROM
+		servlet_member WHERE ID = #{id} AND PWD = #{pwd}
+	</select>
+
+	<select id="searchById" parameterType="String"
+		resultType="member">
+		SELECT * FROM servlet_member WHERE ID = #{id}
+	</select>
+
+	<insert id="insert" parameterType="member">
+		INSERT INTO servlet_member
+		VALUES(
+		#{name},
+		#{id},
+		#{pwd},
+		#{gender},
+		#{email1},
+		#{email2},
+		#{tel1},
+		#{tel2},
+		#{tel3},
+		#{zipcode},
+		#{addr1},
+		#{addr2},
+		sysdate
+		)
+	</insert>
+
+	<update id="modify" parameterType="member">
+		UPDATE servlet_member SET
+		name=#{name}, pwd=#{pwd}, gender=#{gender}, email1=#{email1},
+		email2=#{email2}, tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3},
+		zipcode=#{zipcode}, addr1=#{addr1}, addr2=#{addr2}, logtime=sysdate
+		WHERE id = #{id}
+	</update>
+
+	<select id="getZipcodeList" parameterType="Map"
+		resultType="zipcode">
+		SELECT * FROM newzipcode
+		WHERE sido like '%${sido}%'
+		AND
+		nvl(sigungu, '0') like '%${sigungu}%'
+		AND roadname like '%${roadname}%'
+	</select>
+</mapper>

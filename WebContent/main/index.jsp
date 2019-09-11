@@ -9,6 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/bootstrap-reboot.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        .row-selected {
+            cursor: pointer;
+        }
+    </style>
     <title>index.jsp</title>
 </head>
 

@@ -9,14 +9,14 @@
     </c:if>
     <c:if test="${sessionScope.memName != null}">
         <a href="/miniproject/member/logout.do" class="list-group-item list-group-item-action list-group-item-dark text-white">로그아웃</a>
-        <a href="" class="list-group-item list-group-item-action list-group-item-dark text-white">회원정보수정</a>
+        <a href="/miniproject/member/modifyForm.do" class="list-group-item list-group-item-action list-group-item-dark text-white">회원정보수정</a>
     </c:if>
     
 </div>
 
 <div class="list-group">
 	<c:if test="${sessionScope.memName != null}">
-		<a href="" class="list-group-item list-group-item-action list-group-item-light">글쓰기</a>
+		<a href="/miniproject/board/boardWriteForm.do" class="list-group-item list-group-item-action list-group-item-light">글쓰기</a>
 	</c:if>
-    	<a href="" class="list-group-item list-group-item-action list-group-item-light">목록</a>
+    	<a href="/miniproject/board/boardList.do?pg=1" class="list-group-item list-group-item-action list-group-item-light">목록</a>
 </div>

@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <form action="/mvcmember/member/checkPost.do" method="post">
+    <form action="/miniproject/member/checkPost.do" method="post">
         <table>
             <tr>
                 <td class="t-title">시도</td>

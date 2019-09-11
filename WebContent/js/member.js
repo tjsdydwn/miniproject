@@ -15,7 +15,7 @@ function initWrite() {
         inputAddr1 = writeForm.querySelector('#addr1'),
         inputAddr2 = writeForm.querySelector('#addr2');
 
-    inputName.addEventListener("blur", function (e) {
+    inputName.addEventListener("blur", function(e) {
         if (!this.value) {
             this.parentElement.querySelector('span[data-placeholder]').classList.add("show");
             this.focus();
@@ -24,7 +24,7 @@ function initWrite() {
         }
     });
 
-    inputID.addEventListener("blur", function (e) {
+    inputID.addEventListener("blur", function(e) {
         if (!this.value) {
             this.parentElement.querySelector('span[data-placeholder]').classList.add("show");
             this.focus();
@@ -34,23 +34,23 @@ function initWrite() {
         }
     });
 
-    btnCheckId.addEventListener("click", function (e) {
+    btnCheckId.addEventListener("click", function(e) {
         if (!inputID.value) {
             inputID.parentElement.querySelector('span[data-placeholder]').classList.add("show");
             inputID.focus();
         } else {
-        	let host = window.location.host;
-        	let url = `http://${host}/mvcmember/member/checkId.do?id=${inputID.value}`
-//            let url = "http://localhost:8080/mvcmember/member/checkId.do?id=" + inputID.value;
-        	window.open(url, '아이디 중복확인', 'width=500, height=500');
+            let host = window.location.host;
+            let url = `http://${host}/mvcmember/member/checkId.do?id=${inputID.value}`
+            //            let url = "http://localhost:8080/mvcmember/member/checkId.do?id=" + inputID.value;
+            window.open(url, '아이디 중복확인', 'width=500, height=500');
         }
     });
 
-    inputID.addEventListener("click", function (e) {
+    inputID.addEventListener("click", function(e) {
         document.querySelector('#checkedId').value = 'false';
     });
 
-    inputPwd.addEventListener("blur", function (e) {
+    inputPwd.addEventListener("blur", function(e) {
         if (this.value == "") {
             this.parentElement.querySelector('span[data-placeholder]').classList.add("show");
             this.focus();
@@ -59,7 +59,7 @@ function initWrite() {
         }
     });
 
-    inputRepwd.addEventListener("blur", function (e) {
+    inputRepwd.addEventListener("blur", function(e) {
         if (this.value != inputPwd.value) {
             this.parentElement.querySelector('span[data-placeholder]').classList.add("show");
             this.value = "";
@@ -68,7 +68,7 @@ function initWrite() {
         }
     });
 
-    selectEmail.addEventListener("click", function (e) {
+    selectEmail.addEventListener("click", function(e) {
         if (this.value == "direct") {
             this.classList.add("hide");
             inputEmail.classList.remove("hide");
@@ -76,19 +76,19 @@ function initWrite() {
         }
     });
 
-    inputEmail.addEventListener("click", function (e) {
+    inputEmail.addEventListener("click", function(e) {
         this.classList.add("hide");
         selectEmail.classList.remove("hide");
         selectEmail.getElementsByTagName('option')[0].selected = "selected";
     });
 
-    btnJoin.addEventListener("click", function (e) {
+    btnJoin.addEventListener("click", function(e) {
         if (isValidation(inputName))
             if (isValidation(inputID))
                 if (isValidation(inputPwd))
                     if (isValidation(inputRepwd))
                         if (isValidation(selectEmail))
-                                document.writeForm.submit();
+                            document.writeForm.submit();
     });
 }
 
@@ -114,8 +114,8 @@ function checkPostClose(zipcode, addr1) {
 }
 
 function postCheck() {
-	let host = window.location.host;
-	let url=`http://${host}/mvcmember/member/checkPost.do`;
+    let host = window.location.host;
+    let url = `http://${host}/mvcmember/member/checkPost.do`;
     window.open(url, "우편번호 확인", "width=600 height=500 scrollbars=yes");
 }
 

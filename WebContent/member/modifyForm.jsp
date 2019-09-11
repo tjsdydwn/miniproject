@@ -1,130 +1,138 @@
 <%@ page language = "java" contentType ="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<form action="/miniproject/member/modify.do" id="form-modify" method="POST">
+    <table class="table">
+        <thead class="thead-dark text-center">
+            <tr>
+                <th colspan="2" scope="col">정보수정</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">이름</th>
+                <td>
+                    <div class="input-group">
+                        <input type="text" id="name" name="name" class="form-control" value="${requestScope.memberDTO.name}">
+                        <div class="invalid-tooltip">이름을 입력해주세요.</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">아이디</th>
+                <td>
+                    <input type="text" name="id" id="id" class="form-control" value="${requestScope.memberDTO.id}">
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">비밀번호</th>
+                <td>
+                    <div class="input-group">
+                        <input type="password" name="pwd" id="pwd" class="form-control">
+                        <div class="invalid-tooltip">비밀번호를 입력해주세요.</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">비밀번호 재확인</th>
+                <td class="input-group">
+                    <div class="input-group">
+                        <input type="password" name="repwd" id="repwd" class="form-control">
+                        <div class="invalid-tooltip">동일한 비밀번호를 입력해주세요.</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">성별</th>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" value="0" class="form-check-input">
+                        <label class="form-check-label">남</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="gender" value="1" class="form-check-input">
+                        <label class="form-check-label">여</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">이메일</th>
+                <td>
+                    <div class="input-group">
+                        <input type="text" id="email1" name="email1" class="form-control" value="${requestScope.memberDTO.email1}">
+                        <label class="form-text ml-2 mr-2">@</label>
+                        <input type="text" id="email2" name="email2" class="form-control" list="email-list" value="${requestScope.memberDTO.email2}">
+                        <datalist id="email-list">
+                            <option value="gmail.com">gmail.com</option>
+                            <option value="naver.com">naver.com</option>
+                            <option value="daum.net">daum.net</option>
+                        </datalist>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">휴대폰</th>
+                <td>
+                    <div class="input-group">
+                        <select name="tel1" id="tel1" class="form-control">
+                            <option value="010">010</option>
+                            <option value="011">011</option>
+                        </select>
+                        <input type="text" name="tel2" id="tel2" class="form-control" value="${memberDTO.tel2}">
+                        <input type="text" name="tel3" id="tel3" class="form-control" value="${memberDTO.tel3}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">우편번호</th>
+                <td>
+                    <div class="input-group">
+                        <input type="text" name="zipcode" id="zipcode" class="form-control" value="${memberDTO.zipcode}" readonly>
+                        <button id="btn-zipcode" type="button" class="btn btn-secondary input-group-append">우편번호검색</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">주소</th>
+                <td>
+                    <div class="input-group">
+                        <input type="text" placeholder="주소" name="addr1" class="form-control" id="addr1" value="${memberDTO.addr1}">
+                        <input type="text" placeholder="상세주소" name="addr2" class="form-control" id="addr2" value="${memberDTO.addr2}">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <button id="btn-submit" type="button" class="btn btn-secondary">수정하기</button>
+                    <button type="reset" class="btn btn-secondary">다시작성</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<script src="../js/formValid.js"></script>
+<script>
+    //라디오버튼
+    let radioBtns = document.querySelectorAll('input[name=gender]');
+    let gender = "${memberDTO.gender}";
+    radioBtns[parseInt(gender)].checked = true;
+    //전화번호
+    document.querySelector('#tel1 [value = "${memberDTO.tel1}"]').selected = true;
 
-<!DOCTYPE html>
-<html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>회원정보 수정</title>
-    <style>
-        table {
-            border-collapse: collapse;
+    function checkModify() {
+        if (!document.querySelector('#name').value) {
+            alert('이름을 입력해주세요.');
+            return;
         }
 
-        th,
-        td {
-            border: 1px solid gray;
+        if (!document.querySelector('#pwd').value) {
+            alert('비밀번호를 입력해주세요.');
+            return;
         }
 
-        tr:last-child>td {
-            text-align: center;
+        if (document.querySelector('#pwd').value != document.querySelector('#repwd').value) {
+            alert('비밀번호가 같지 않습니다.');
+            return;
         }
-    </style>
-</head>
 
-<body>
-    <h1>회원정보 수정</h1>
-    <form action="/mvcmember/member/modify.do" name="modifyForm" method="POST">
-        <table>
-            <tr>
-                <th>이름</th>
-                <td><input type="text" name="name" id="name" value="${requestScope.memberDTO.name}"></td>
-            </tr>
-            <tr>
-                <th>아이디</th>
-                <td><input type="text" name="id" id="id" value="${requestScope.memberDTO.id}" readonly></td>
-            </tr>
-            <tr>
-                <th>비밀번호</th>
-                <td><input type="password" name="pwd" id="pwd"></td>
-            </tr>
-            <tr>
-                <th>재확인</th>
-                <td><input type="password" name="repwd" id="repwd"></td>
-            </tr>
-            <tr>
-                <th>성별</th>
-                <td>
-                    <input type="radio" name="gender" id="male" value="0">
-                    <label for="mail">남</label>
-                    <input type="radio" name="gender" id="female" value="1">
-                    <label for="female">여</label>
-                </td>
-            </tr>
-            <tr>
-                <th>이메일</th>
-                <td><input name="email1" type="text" value="${requestScope.memberDTO.email1}">
-                    <span>@</span>
-                    <input name="email2" type="text" list="email-list" value="${requestScope.memberDTO.email2}">
-                    <datalist id="email-list">
-                        <option value="gmail.com">gmail.com</option>
-                        <option value="naver.com">naver.com</option>
-                        <option value="daum.net">daum.net</option>
-                    </datalist>
-                </td>
-            </tr>
-            <tr>
-                <th>핸드폰</th>
-                <td>
-                    <select name="tel1" id="tel1">
-                        <option value="010">010</option>
-                        <option value="011">011</option>
-                    </select>
-                    <span>-</span>
-                    <input type="text" name="tel2" id="tel2" value="${memberDTO.tel2}">
-                    <span>-</span>
-                    <input type="text" name="tel3" id="tel3" value="${memberDTO.tel3}">
-                </td>
-            </tr>
-            <tr>
-                <th>주소</th>
-                <td>
-                    <input type="text" name="zipcode" id="zipcode" value="${memberDTO.zipcode}" readonly>
-                    <button type="button" onclick="postCheck()">우편번호검색</button>
-                    <br>
-                    <input type="text" name="addr1" id="addr1" value="${memberDTO.addr1}">
-                    <br>
-                    <input type="text" name="addr2" id="addr2" value="${memberDTO.addr2}">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <button type="button" onclick="checkModify()">정보수정</button>
-                    <button type="reset">다시작성</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <script src="../js/member.js"></script>
-    <script>
-        //라디오버튼
-        let radioBtns = document.querySelectorAll('input[name=gender]');
-        let gender = "${memberDTO.gender}";
-        radioBtns[parseInt(gender)].checked = true;
-        //전화번호
-        document.querySelector('#tel1 [value = "${memberDTO.tel1}"]').selected = true;
-
-        function checkModify() {
-            if (!document.querySelector('#name').value) {
-                alert('이름을 입력해주세요.');
-                return;
-            }
-
-            if (!document.querySelector('#pwd').value) {
-                alert('비밀번호를 입력해주세요.');
-                return;
-            }
-
-            if (document.querySelector('#pwd').value != document.querySelector('#repwd').value) {
-                alert('비밀번호가 같지 않습니다.');
-                return;
-            }
-
-            document.modifyForm.submit();
-        }    
-    </script>
-</body>
-
-</html>
+        document.modifyForm.submit();
+    }
+</script>

@@ -11,10 +11,12 @@
 </head>
 
 <body>
-    ${ param.id }는 사용할 수 있는 아이디입니다.
-    <br><br>
-    <button type="button" onclick="checkIdClose('${ param.id }')">사용하기</button>
-    <script src="../js/member.js?ver=2"></script>
+    <div class="container">
+        <span id="new-id">${ param.id }</span>는 사용할 수 있는 아이디입니다.
+        <br><br>
+        <button id="btn-close" type="button">사용하기</button>
+    </div>
+    <script src="../js/formValid.js"></script>
 </body>
 
 </html>

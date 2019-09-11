@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시판 글 확인</title>
+    <link rel="stylesheet" href="../css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        .textarea-size {
+            height: 500px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="form-view" class="jumbotron" action="boardModifyForm.jsp" method="POST">
+            <div class="wrap">
+                <div class="input-group mb-md-3">
+                    <label class="input-group-text input-group-prepend">제목</label>
+                    <!-- <div type="text" class="form-control text-center" value="${requestScope.boardDTO.subject}"> -->
+                    <div class="form-control text-center">${requestScope.boardDTO.subject}</div>
+                </div>
+
+                <div class="input-group mb-md-3">
+                    <label class="input-group-text">글번호</label>
+                    <div class="form-control text-center">${requestScope.boardDTO.seq}</div>
+                    <label class="input-group-text">작성자</label>
+                    <div class="form-control text-center">${requestScope.boardDTO.id}</div>
+                    <label class="input-group-text">조회수</label>
+                    <div class="form-control text-center">${requestScope.boardDTO.hit}</div>
+                </div>
+
+                <div class="form-control textarea-size p-3 mb-md-3">${requestScope.boardDTO.content}</div>
+
+                <div class="text-center">
+                    <button type="button" id="btn-update" class="btn btn-secondary">수정</button>
+                    <button type="button" id="btn-delete" class="btn btn-secondary">삭제</button>
+                    <button type="button" id="btn-back" class="btn btn-secondary">돌아가기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        const formView = document.querySelector('#form-view');
+        if (formView) initBoardView();
+
+        function initBoardView() {
+            const btnUpdate = formView.querySelector('#btn-update'),
+                btnDelete = formView.querySelector('#btn-delete'),
+                btnBack = formView.querySelector('#btn-back');
+
+            const pg = 1;
+
+            btnUpdate.addEventListener("click", function(e) {
+
+            });
+
+            btnDelete.addEventListener("click", function(e) {
+                return false;
+            });
+
+            btnBack.addEventListener("click", function(e) {
+                location.href = `/mvcboard/board/boardList?pg${pg}`
+            });
+        }
+    </script>
+</body>
+
+</html>

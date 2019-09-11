@@ -79,3 +79,7 @@ footer {
     border: 1px solid gray;
     height: 150px;
 }
+
+.row-selected{
+    cursor : pointer;
+}

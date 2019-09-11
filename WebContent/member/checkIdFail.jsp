@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <form action="/mvcmember/member/checkId.do" method="GET">
+    <form action="/miniproject/member/checkId.do" method="GET">
         해당 ID는 이미 사용중입니다.
         <br><br>
         아이디 <input type="text" name="id">
