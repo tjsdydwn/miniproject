@@ -19,7 +19,7 @@
             <tr>
                 <th scope="row">아이디</th>
                 <td>
-                    <input type="text" name="id" id="id" class="form-control" value="${requestScope.memberDTO.id}">
+                    <input type="text" name="id" id="id" class="form-control" value="${requestScope.memberDTO.id}" readonly>
                 </td>
             </tr>
             <tr>
@@ -43,6 +43,7 @@
             <tr>
                 <th scope="row">성별</th>
                 <td>
+                    <input id="gender" type="hidden" value="${memberDTO.gender}">
                     <div class="form-check form-check-inline">
                         <input type="radio" name="gender" value="0" class="form-check-input">
                         <label class="form-check-label">남</label>
@@ -72,7 +73,7 @@
                 <th scope="row">휴대폰</th>
                 <td>
                     <div class="input-group">
-                        <select name="tel1" id="tel1" class="form-control">
+                        <select data-default="${memberDTO.tel1}" name="tel1" id="tel1" class="form-control">
                             <option value="010">010</option>
                             <option value="011">011</option>
                         </select>
@@ -95,6 +96,8 @@
                 <td>
                     <div class="input-group">
                         <input type="text" placeholder="주소" name="addr1" class="form-control" id="addr1" value="${memberDTO.addr1}">
+                    </div>
+                    <div class="input-group">
                         <input type="text" placeholder="상세주소" name="addr2" class="form-control" id="addr2" value="${memberDTO.addr2}">
                     </div>
                 </td>
@@ -102,37 +105,9 @@
             <tr>
                 <td colspan="2" class="text-center">
                     <button id="btn-submit" type="button" class="btn btn-secondary">수정하기</button>
-                    <button type="reset" class="btn btn-secondary">다시작성</button>
                 </td>
             </tr>
         </tbody>
     </table>
 </form>
-<script src="../js/formValid.js"></script>
-<script>
-    //라디오버튼
-    let radioBtns = document.querySelectorAll('input[name=gender]');
-    let gender = "${memberDTO.gender}";
-    radioBtns[parseInt(gender)].checked = true;
-    //전화번호
-    document.querySelector('#tel1 [value = "${memberDTO.tel1}"]').selected = true;
-
-    function checkModify() {
-        if (!document.querySelector('#name').value) {
-            alert('이름을 입력해주세요.');
-            return;
-        }
-
-        if (!document.querySelector('#pwd').value) {
-            alert('비밀번호를 입력해주세요.');
-            return;
-        }
-
-        if (document.querySelector('#pwd').value != document.querySelector('#repwd').value) {
-            alert('비밀번호가 같지 않습니다.');
-            return;
-        }
-
-        document.modifyForm.submit();
-    }
-</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

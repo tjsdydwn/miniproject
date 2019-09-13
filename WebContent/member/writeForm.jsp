@@ -10,44 +10,44 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">이름</th>
+                <th scope="row">이름<span class="text-muted small">(필수)</span></th>
                 <td>
-                	<div class="input-group">
-	                    <input type="text" id="name" name="name" class="form-control">
-	                    <div class="invalid-tooltip">이름을 입력해주세요.</div>
-            		</div>
+                    <div class="input-group">
+                        <input type="text" id="name" name="name" class="form-control">
+                        <div class="invalid-tooltip">이름을 입력해주세요.</div>
+                    </div>
                 </td>
             </tr>
             <tr>
-                <th scope="row">아이디</th>
+                <th scope="row">아이디<span class="text-muted small">(필수)</span></th>
                 <td>
                     <div class="input-group">
                         <input type="text" name="id" id="id" class="form-control">
-                        <div class="invalid-tooltip">ID확인을 진행해주세요.</div>
+                        <div class="invalid-tooltip">ID입력 및 확인을 진행해주세요.</div>
                         <button type="button" id="btnCheckId" class="btn btn-secondary input-group-append">ID확인</button>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th scope="row">비밀번호</th>
+                <th scope="row">비밀번호<span class="text-muted small">(필수)</span></th>
                 <td>
-                	<div class="input-group">
-	                    <input type="password" name="pwd" id="pwd" class="form-control">
-	                    <div class="invalid-tooltip">비밀번호를 입력해주세요.</div>
+                    <div class="input-group">
+                        <input type="password" name="pwd" id="pwd" class="form-control">
+                        <div class="invalid-tooltip">비밀번호를 입력해주세요.</div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th scope="row">비밀번호 재확인</th>
+                <th scope="row">비밀번호 재확인<span class="text-muted small">(필수)</span></th>
                 <td class="input-group">
-                	<div class="input-group">
-	                    <input type="password" name="repwd" id="repwd" class="form-control">
-	                    <div class="invalid-tooltip">동일한 비밀번호를 입력해주세요.</div>
-                	</div>
+                    <div class="input-group">
+                        <input type="password" name="repwd" id="repwd" class="form-control">
+                        <div class="invalid-tooltip">동일한 비밀번호를 입력해주세요.</div>
+                    </div>
                 </td>
             </tr>
             <tr>
-                <th scope="row">성별</th>
+                <th scope="row">성별<span class="text-muted small">(필수)</span></th>
                 <td>
                     <div class="form-check form-check-inline">
                         <input type="radio" name="gender" value="0" class="form-check-input" checked>
@@ -99,7 +99,10 @@
                 <th scope="row">주소</th>
                 <td>
                     <div class="input-group">
-                        <input type="text" placeholder="주소" name="addr1" class="form-control" id="addr1"> <input type="text" placeholder="상세주소" name="addr2" class="form-control" id="addr2">
+                        <input type="text" placeholder="주소" name="addr1" class="form-control" id="addr1">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="상세주소" name="addr2" class="form-control" id="addr2">
                     </div>
                 </td>
             </tr>
@@ -112,3 +115,4 @@
         </tbody>
     </table>
 </form>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

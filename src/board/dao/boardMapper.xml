@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardSQL">
+
+	<select id="getAll" parameterType="Map" resultType="board">
+		SELECT * FROM 
+		(SELECT rownum rn, tt.* FROM (SELECT * FROM board ORDER BY ref DESC, step ASC) tt)
+		<![CDATA[
+		WHERE rn >= #{startNum} and rn <= #{endNum}
+		]]>
+	</select>
+
+	<select id="getCount" resultType="Integer">
+		SELECT count(*) FROM board
+	</select>
+
+	<select id="getBoard" parameterType="Integer" resultType="board">
+		SELECT *
+		FROM board WHERE seq = ${seq}
+	</select>
+
+	<insert id="write" parameterType="board">
+		INSERT INTO board
+		VALUES
+		(seq_board.nextVal,#{id},#{name},#{email},#{subject},#{content},seq_board.currVal,0,0,0,0,0,sysdate)
+	</insert>
+
+	<update id="modify" parameterType="board">
+		UPDATE board SET subject =
+		#{subject}, content = #{content}, logtime = sysdate WHERE seq = #{seq}
+	</update>
+
+	<update id="boardHit" parameterType="Integer">
+		UPDATE board SET hit = hit +
+		1 WHERE seq = #{seq}
+	</update>
+
+</mapper>

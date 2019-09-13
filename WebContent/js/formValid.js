@@ -5,6 +5,72 @@ if (formLogin) initFormLogin();
 if (formWrite) initFormWrite();
 if (formModify) initFormModify();
 
+function initFormModify() {
+    //라디오버튼
+    const radioBtns = formModify.querySelectorAll('input[name=gender]'),
+        gender = formModify.querySelector('#gender'),
+        tel1 = formModify.querySelector('#tel1'),
+        btnSubmit = formModify.querySelector('#btn-submit'),
+        name = formModify.querySelector('#name'),
+        pwd = formModify.querySelector('#pwd'),
+        repwd = formModify.querySelector('#repwd'),
+        zipcode = formModify.querySelector('#zipcode'),
+        addr1 = formModify.querySelector('#addr1'),
+        addr2 = formModify.querySelector('#addr2'),
+        btnZipcode = formModify.querySelector('#btn-zipcode');
+
+    radioBtns[parseInt(gender.value)].checked = true;
+
+    //전화번호
+    tel1.value = tel1.getAttribute('data-default');
+
+    name.addEventListener("input", function(e) {
+        if (this.value) validate(this);
+        else invalidate(this);
+    });
+
+    pwd.addEventListener("input", function(e) {
+        if (this.value) validate(this);
+        else invalidate(this);
+
+        if (repwd.value && pwd.value !== repwd.value) {
+            invalidate(repwd);
+        }
+    });
+
+    repwd.addEventListener("input", function(e) {
+        if (!repwd.value || pwd.value !== repwd.value) invalidate(this);
+        else validate(this);
+    });
+
+    zipcode.addEventListener("click", function(e) {
+        btnZipcode.click();
+    });
+
+    btnZipcode.addEventListener("click", function(e) {
+        execSearchZipcode(zipcode, addr1, addr2);
+    });
+
+    btnSubmit.addEventListener("click", function(e) {
+        if (!isValid(name)) {
+            invalidate(name);
+            return name.focus();
+        }
+
+        if (!isValid(pwd)) {
+            invalidate(pwd);
+            return pwd.focus();
+        }
+
+        if (!isValid(repwd)) {
+            invalidate(repwd);
+            return repwd.focus();
+        }
+
+        formModify.submit();
+    });
+}
+
 function initFormWrite() {
     const name = formWrite.querySelector('#name'),
         id = formWrite.querySelector('#id'),
@@ -37,6 +103,10 @@ function initFormWrite() {
     pwd.addEventListener("input", function(e) {
         if (this.value) validate(this);
         else invalidate(this);
+
+        if (repwd.value && pwd.value !== repwd.value) {
+            invalidate(repwd);
+        }
     });
 
     repwd.addEventListener("input", function(e) {
@@ -55,26 +125,40 @@ function initFormWrite() {
         }
     });
 
-    btnSubmit.addEventListener("click", function(e) {
-        if (!id.classList.contains('is-valid')) return id.focus();
-        if (!pwd.classList.contains('is-valid')) return pwd.focus();
-        if (!repwd.value || !repwd.value === pwd.value) {
-            alert('동일한 비밀번호를 입력해주세요.');
-            return repwd.focus();
-        }
-    });
-
     zipcode.addEventListener("click", function(e) {
         btnZipcode.click();
     })
 
     btnZipcode.addEventListener("click", function(e) {
-        const host = location.host;
-        const url = `http://${host}/miniproject/member/checkPost.do`;
-        window.open(url, '우편번호 검색', 'width=700, height=500');
+        execSearchZipcode(zipcode, addr1, addr2);
     });
 
+    // btnZipcode.addEventListener("click", function(e) {
+    //     const host = location.host;
+    //     const url = `http://${host}/miniproject/member/checkPost.do`;
+    //     window.open(url, '우편번호 검색', 'width=700, height=500');
+    // });
+
     btnSubmit.addEventListener("click", function(e) {
+        if (!isValid(name)) {
+            invalidate(name);
+            return name.focus();
+        }
+
+        if (checkedId.value === 'false') {
+            invalidate(id);
+            return id.focus();
+        }
+
+        if (!isValid(pwd)) {
+            invalidate(pwd);
+            return pwd.focus();
+        }
+
+        if (!isValid(repwd)) {
+            invalidate(repwd);
+            return repwd.focus();
+        }
         formWrite.submit();
     });
 }
@@ -101,6 +185,12 @@ function invalidate(el) {
     else el.classList.add('is-invalid');
 }
 
+function isValid(el) {
+    if (!el.value) return false;
+    if (el.classList.contains('is-invalid')) return false;
+    return true;
+}
+
 const newId = document.querySelector('#new-id');
 
 if (newId) {
@@ -120,4 +210,24 @@ if (newId) {
         btnCheckId.innerText = '확인완료';
         btnCheckId.disabled = true;
     });
+}
+
+function execSearchZipcode(zipcode, addr1, addr2) {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            let addr = ''; // 주소 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            zipcode.value = data.zonecode;
+            addr1.value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            addr2.focus();
+        }
+    }).open();
 }

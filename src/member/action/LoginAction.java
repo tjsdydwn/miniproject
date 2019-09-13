@@ -13,25 +13,25 @@ public class LoginAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		//데이터
+		// 데이터
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 
-		//DB
+		// DB
 		MemberDTO memberDTO = MemberDAO.getInstance().login(id, pwd);
 
-		//응답
+		// 응답
 		if (memberDTO == null) {
 			request.setAttribute("display", "/member/loginFail.jsp");
 			return "/main/index.jsp";
 		} else {
-			//세션
+			// 세션
 			HttpSession session = request.getSession();
 			session.setAttribute("memName", memberDTO.getName());
 			session.setAttribute("memId", memberDTO.getId());
 			session.setAttribute("memEmail", memberDTO.getEmail1() + "@" + memberDTO.getEmail2());
 
-			request.setAttribute("display", "/member/loginOk.jsp");
+			request.setAttribute("display", "/template/body.jsp");
 
 			return "/main/index.jsp";
 		}

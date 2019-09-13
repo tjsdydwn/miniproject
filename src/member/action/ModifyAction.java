@@ -2,6 +2,7 @@ package member.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -25,12 +26,18 @@ public class ModifyAction implements CommandProcess {
 		String zipcode = request.getParameter("zipcode");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
-		MemberDTO memberDTO = new MemberDTO(name, id, pwd, gender, email1, email2, tel1, tel2, tel3, zipcode, addr1, addr2);
+		MemberDTO memberDTO = new MemberDTO(name, id, pwd, gender, email1, email2, tel1, tel2, tel3, zipcode, addr1,
+				addr2);
 
-		//DB
+		// DB
 		MemberDAO.getInstance().modify(memberDTO);
 
-		return "/member/loginForm.jsp";
+		HttpSession session = request.getSession();
+		session.setAttribute("memName", memberDTO.getName());
+
+		request.setAttribute("display", "/template/body.jsp");
+
+		return "/main/index.jsp";
 	}
 
 }

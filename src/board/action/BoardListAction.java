@@ -21,7 +21,7 @@ public class BoardListAction implements CommandProcess {
 		int startNum = endNum - (boardLimit - 1);
 
 		List<BoardDTO> list = BoardDAO.getInstance().getAll(startNum, endNum);
-		int cntBoard = BoardDAO.getInstance().getTotalA();
+		int cntBoard = BoardDAO.getInstance().getCount();
 		int endGroup = ((pg - 1) / groupLimit + 1) * groupLimit;
 		int startGroup = endGroup - (groupLimit - 1);
 		if (endGroup >= cntBoard / boardLimit + 1) {
