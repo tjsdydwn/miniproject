@@ -35,5 +35,9 @@
 		UPDATE board SET hit = hit +
 		1 WHERE seq = #{seq}
 	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE from board WHERE seq = #{seq}
+	</delete>
 
 </mapper>

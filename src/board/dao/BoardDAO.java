@@ -108,6 +108,13 @@ public class BoardDAO {
 		ss.commit();
 		ss.close();
 	}
+	
+	public void delete(int seq) {
+		SqlSession ss = ssf.openSession();
+		ss.delete("boardSQL.delete", seq);
+		ss.commit();
+		ss.close();
+	}
 
 //	public int getTotalA() {
 //		int result = 0;

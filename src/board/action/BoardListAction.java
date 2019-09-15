@@ -2,6 +2,7 @@ package board.action;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,6 +34,9 @@ public class BoardListAction implements CommandProcess {
 		request.setAttribute("endGroup", endGroup);
 		request.setAttribute("display", "/board/boardList.jsp");
 
+		Cookie cookie = new Cookie("view", "true");
+		response.addCookie(cookie);
+		
 		return "/main/index.jsp";
 	}
 
