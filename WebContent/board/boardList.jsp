@@ -29,13 +29,13 @@
     <form action="/miniproject/board/boardList.do?pg=1" method="GET" class="mb-2">
         <div class="input-group input-group-sm justify-content-end">
             <select name="category" id="category" class="custom-select col-md-2">
-                <option value="subtitle">제목</option>
-                <option value="content">내용</option>                
+                <option selected value="subject">제목</option>
+                <option value="content">내용</option>
                 <option value="id">아이디</option>
             </select>
-            <input type="text" name="keyword" class="form-control">
+            <input type="text" id="keyword" name="keyword" class="form-control">
             <div class="input-group-append">
-                <button class="btn btn-secondary" type="button">검색</button>
+                <button id="btn-search" class="btn btn-secondary" type="button">검색</button>
             </div>
         </div>
     </form>

@@ -10,7 +10,7 @@
 		<servlet-class>com.control.MainServlet</servlet-class>
 		<init-param>
 			<param-name>propertyConfig</param-name>
-			<param-value>/Users/yongjoo_sun/Documents/GitHub/miniproject/WebContent/WEB-INF/command.properties</param-value>
+			<param-value>C:/java_ee/workspace/miniproject/WebContent/WEB-INF/command.properties</param-value>
 		</init-param>
 	</servlet>
 

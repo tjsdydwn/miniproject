@@ -11,7 +11,6 @@ import member.dao.MemberDAO;
 
 public class LoginAction implements CommandProcess {
 
-	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// 데이터
 		String id = request.getParameter("id");
@@ -22,8 +21,10 @@ public class LoginAction implements CommandProcess {
 
 		// 응답
 		if (memberDTO == null) {
-			request.setAttribute("display", "/member/loginFail.jsp");
+			request.setAttribute("display", "/template/body.jsp");
+			request.setAttribute("loginFail", true);
 			return "/main/index.jsp";
+		
 		} else {
 			// 세션
 			HttpSession session = request.getSession();

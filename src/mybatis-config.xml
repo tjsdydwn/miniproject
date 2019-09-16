@@ -6,6 +6,7 @@
 		<typeAlias type="member.bean.MemberDTO" alias="member"></typeAlias>
 		<typeAlias type="member.bean.ZipcodeDTO" alias="zipcode"></typeAlias>
 		<typeAlias type="board.bean.BoardDTO" alias="board"></typeAlias>
+		<typeAlias type="imageboard.bean.ImageboardDTO" alias="imageboard"></typeAlias>
 	</typeAliases>
 
 	<environments default="development">
@@ -25,5 +26,6 @@
 	<mappers>
 		<mapper resource="member/dao/memberMapper.xml" />
 		<mapper resource="board/dao/boardMapper.xml" />
+		<mapper resource="imageboard/dao/imageboardMapper.xml"/>
 	</mappers>
 </configuration>

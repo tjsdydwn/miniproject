@@ -18,6 +18,19 @@ CREATE TABLE servlet_member(
 );
 drop table servlet_member;
 
+CREATE TABLE imageboard(
+     seq NUMBER PRIMARY KEY,               
+     imageId VARCHAR2(20) NOT NULL,     -- 상품코드  
+     imageName VARCHAR2(40) NOT NULL, -- 상품명
+     imagePrice  NUMBER NOT NULL,      -- 단가
+     imageQty    NUMBER NOT NULL,      -- 개수
+     imageContent VARCHAR2(4000) NOT NULL,      
+     image1 varchar2(200),   
+     logtime DATE DEFAULT SYSDATE
+);
+
+create sequence seq_imageboard  nocache nocycle;
+
 create table board(
     seq number primary key,
     id varchar2(20) not null,
@@ -33,6 +46,10 @@ create table board(
     hit number default 0,
     logtime date
 );
+
+SELECT * FROM 
+		(SELECT rownum rn, tt.* FROM (SELECT * FROM board WHERE id = ord} ORDER BY ref DESC, step ASC) tt)
+		WHERE rn >= #{startNum} and rn <= #{endNum}
 
 drop table board;
 

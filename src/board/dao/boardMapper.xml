@@ -4,11 +4,23 @@
 <mapper namespace="boardSQL">
 
 	<select id="getAll" parameterType="Map" resultType="board">
+		<![CDATA[
 		SELECT * FROM 
 		(SELECT rownum rn, tt.* FROM (SELECT * FROM board ORDER BY ref DESC, step ASC) tt)
-		<![CDATA[
 		WHERE rn >= #{startNum} and rn <= #{endNum}
 		]]>
+	</select>
+	
+	<select id="getBySearch" parameterType="Map" resultType="board">
+		<![CDATA[
+		SELECT * FROM 
+		(SELECT rownum rn, tt.* FROM (SELECT * FROM board WHERE ${category} like '%${keyword}%' ORDER BY ref DESC, step ASC) tt)
+		WHERE rn >= #{startNum} and rn <= #{endNum}
+		]]>
+	</select>
+	
+	<select id="getCountBySearch" parameterType="Map" resultType="Integer">
+		SELECT count(*) FROM board WHERE ${category} like '%${keyword}%'
 	</select>
 
 	<select id="getCount" resultType="Integer">
