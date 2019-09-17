@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container">
-    <form action="/miniproject/board/boardModify.do?pg=${requestScope.pg}" method="POST" id="form-board">
+    <form action="/miniproject/board/boardModify.do" method="POST" id="form-board">
         <div class="jumbotron">
             <div>
                 <div class="input-group input-group-lg mb-4">

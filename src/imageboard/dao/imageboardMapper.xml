@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="boardSQL">
-	
+<mapper namespace="imageboardSQL">
+	<insert id="write" parameterType="imageboard">
+		INSERT INTO imageboard
+		VALUES(seq_imageboard.nextVal
+		,#{imageId}
+		,#{imageName}
+		,#{imagePrice}
+		,#{imageQty}
+		,#{imageContent}
+		,#{image1}
+		,sysdate)
+	</insert>
+
+	<select id="getAll" parameterType="Map" resultType="imageboard">
+		<![CDATA[
+		SELECT * FROM
+		(SELECT rownum rn, tt.* FROM (SELECT * FROM imageboard ORDER BY seq DESC) tt)
+		WHERE rn >= #{startNum} AND rn <= #{endNum}
+		]]>
+	</select>
+
+	<select id="getCount" resultType="Integer">
+		SELECT count(*) FROM imageboard
+	</select>
+
+	<select id="getBoard" parameterType="Integer" resultType="imageboard">
+		SELECT * FROM imageboard WHERE seq = #{seq}
+	</select>
+
 </mapper>

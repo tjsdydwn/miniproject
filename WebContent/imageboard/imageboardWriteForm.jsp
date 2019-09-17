@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="container">
-    <form action="" method="POST" id="form-imageboard">
+    <style>
+        #image1 + label::after{
+            content : "찾기";
+        }
+    </style>
+    <form action="/miniproject/imageboard/imageboardWrite.do" method="POST" id="form-imageboard" enctype="multipart/form-data">
         <div class="jumbotron">
             <div>
                 <div class="input-group input-group mb-2">
@@ -39,7 +44,10 @@
                     </div>
                 </div>
                 <div class="input-group input-group mb-2">
-                    <input type="file" name="image1" id="image1" class="">
+                    <div class="custom-file">
+                        <input type="file" name="image1" id="image1" class="custom-file-input">
+                        <label class="custom-file-label" for="image1">파일을 선택해주세요</label>
+                    </div>
                 </div>
             </div>
             <div class="text-center">

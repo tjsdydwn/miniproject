@@ -28,6 +28,7 @@ public class BoardSearchAction implements CommandProcess {
 		int cntBoard = BoardDAO.getInstance().getCountBySearch(category, keyword);
 		int endGroup = ((pg - 1) / groupLimit + 1) * groupLimit;
 		int startGroup = endGroup - (groupLimit - 1);
+		int totalGroup = (cntBoard - 1) / boardLimit + 1;
 		if (endGroup >= cntBoard / boardLimit + 1) {
 			endGroup = cntBoard / boardLimit + 1;
 		}
@@ -35,6 +36,7 @@ public class BoardSearchAction implements CommandProcess {
 		request.setAttribute("list", list);
 		request.setAttribute("startGroup", startGroup);
 		request.setAttribute("endGroup", endGroup);
+		request.setAttribute("totalGroup", totalGroup);
 		request.setAttribute("display", "/board/boardList.jsp");
 		
 		Cookie cookie = new Cookie("view", "true");

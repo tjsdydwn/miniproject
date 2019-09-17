@@ -1,31 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="container board_wrap">
-    <table class="table table-hover table-striped">
+<div class="container imageboard_wrap">
+    <table class="table table-hover">
         <thead class="text-center thead-dark">
             <tr>
-                <th scope="col" width="5%">No.</th>
-                <th scope="col">제목</th>
-                <th scope="col" width="7%">작성자</th>
-                <th scope="col" width="17%">작성일</th>
-                <th scope="col" width="8%">조회</th>
-                <th scope="col" width="8%">답글</th>
+                <th scope="col">No.</th>
+                <th scope="col">이미지</th>
+                <th scope="col">상품명</th>
+                <th scope="col">단가</th>
+                <th scope="col">개수</th>
+                <th scope="col">합계</th>
             </tr>
         </thead>
         <tbody class="text-center">
             <c:forEach var="row" items="${requestScope.list}">
                 <tr class="row-selected">
-                    <th scope="row">${row.seq}</th>
-                    <td class="text-left">${row.subject}</td>
-                    <td>${row.id}</td>
-                    <td>${row.logtime}</td>
-                    <td>${row.hit}</td>
-                    <td>${row.reply}</td>
+                    <th scope="row" class="align-middle">${row.seq}</th>
+                    <td class="align-middle"><img src="../storage/${row.image1}" alt="" class="img-thumbnail" width="200" height="200"></td>
+                    <td class="align-middle">${row.imageName}</td>
+                    <td class="align-middle">${String.format("%,d", row.imagePrice)}</td>
+                    <td class="align-middle">${row.imageQty}</td>
+                    <td class="align-middle">${String.format("%,d", row.imagePrice * row.imageQty)}원</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+    
     <div class="input-group input-group-sm justify-content-end mb-2">
         <select name="category" id="category" class="custom-select col-md-2">
             <option selected value="subject">제목</option>
@@ -37,15 +38,9 @@
             <button id="btn-search" class="btn btn-secondary" type="button">검색</button>
         </div>
     </div>
-  
-    <c:if test="${sessionScope.memId != null}">
-        <div class="text-center mb-3">
-            <button id="btn-write" type="button" class="btn btn-secondary">작성하기</button>
-        </div>
-    </c:if>
 
     <nav>
-    	<input type="hidden" id="totalGroup" value="${requestScope.totalGroup}">
+        <input type="hidden" id="totalGroup" value="${requestScope.totalGroup}">
         <ul class="pagination justify-content-center">
             <li class="page-item">
                 <a class="page-link" id="prev" href="#">이전</a>

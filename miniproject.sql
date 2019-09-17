@@ -28,7 +28,10 @@ CREATE TABLE imageboard(
      image1 varchar2(200),   
      logtime DATE DEFAULT SYSDATE
 );
-
+SELECT * FROM imageboard;
+delete from imageboard;
+commit;
+drop sequence seq_imageboard;
 create sequence seq_imageboard  nocache nocycle;
 
 create table board(

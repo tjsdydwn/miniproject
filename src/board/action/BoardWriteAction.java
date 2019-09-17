@@ -23,8 +23,11 @@ public class BoardWriteAction implements CommandProcess {
 		boardDTO.setContent(request.getParameter("content"));
 
 		BoardDAO.getInstance().write(boardDTO);
-
-		return new BoardListAction().requestPro(request, response);
+		
+		request.setAttribute("pg", 1);
+		request.setAttribute("display", "/board/boardModify.jsp");
+		
+		return "/main/index.jsp";
 	}
 
 }

@@ -10,6 +10,7 @@ public class ImageboardDTO {
 	private int imagePrice;
 	private int imageQty;
 	private String imageContent;
+	private String image1;
 	private String logtime;
 //    seq NUMBER PRIMARY KEY,               
 //    imageId VARCHAR2(20) NOT NULL,     -- 상품코드  

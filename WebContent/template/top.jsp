@@ -16,9 +16,12 @@
 		<c:if test="${sessionScope.memId != null}">
 	  		<a href="/miniproject/board/boardWriteForm.do" class="btn btn-secondary">글쓰기</a>
 	  		<c:if test="${sessionScope.memId == 'admin'}">
-	  		<a href="/miniproject/board/imageboardWriteForm.do" class="btn btn-secondary">이미지 등록</a>
+	  		<a href="/miniproject/imageboard/imageboardWriteForm.do" class="btn btn-secondary">이미지 등록</a>
 	  		</c:if>
 	    </c:if>
 	  <a href="/miniproject/board/boardList.do?pg=1" class="btn btn-secondary">목록</a>
+	  	<c:if test="${sessionScope.memId != null}">
+	  		<a href="/miniproject/imageboard/imageboardList.do?pg=1" class="btn btn-secondary">이미지 목록</a>
+		</c:if>
 	</div>
 </div>

@@ -12,14 +12,18 @@ public class BoardModifyAction implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setSeq(Integer.parseInt(request.getParameter("seq")));
 		boardDTO.setSubject(request.getParameter("subject"));
 		boardDTO.setContent(request.getParameter("content"));
 		BoardDAO.getInstance().modify(boardDTO);
 		
+		request.setAttribute("pg", pg);
+		request.setAttribute("display", "/board/boardModify.jsp");
 		
-		return new BoardListAction().requestPro(request, response);
+		return "/main/index.jsp";
 	}
 
 }
