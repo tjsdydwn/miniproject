@@ -68,4 +68,11 @@ public class ImageboardDAO {
 		ss.close();
 		return imageboardDTO;
 	}
+
+	public void delete(String[] checkedSeq) {
+		SqlSession ss = ssf.openSession();
+		ss.delete("imageboardSQL.delete", checkedSeq);
+		ss.commit();
+		ss.close();
+	}
 }

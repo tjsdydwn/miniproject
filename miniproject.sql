@@ -50,6 +50,9 @@ create table board(
     logtime date
 );
 
+SELECT * from board ORDER BY ref DESC, step ASC;
+UPDATE board SET subject = '[원글이 삭제된 답글]' || subject WHERE pseq = 48;
+rollback;
 SELECT * FROM 
 		(SELECT rownum rn, tt.* FROM (SELECT * FROM board WHERE id = ord} ORDER BY ref DESC, step ASC) tt)
 		WHERE rn >= #{startNum} and rn <= #{endNum}

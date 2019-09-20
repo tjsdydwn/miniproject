@@ -19,13 +19,13 @@
         </div>
 
         <div class="form-control textarea-size p-3 mb-md-3" style="height:500px;">${requestScope.boardDTO.content}</div>
-
-        <c:if test="${sessionScope.memId != null}">
-        <div class="text-center">
+		<div class="text-center">
+		<button type="button" id="btn-reply" class="btn btn-secondary">답글</button>
+        <c:if test="${sessionScope.memId == requestScope.boardDTO.id}">
             <button type="button" id="btn-update" class="btn btn-secondary">수정</button>
             <button type="button" id="btn-delete" class="btn btn-secondary">삭제</button>
-        </div>
         </c:if>
+        </div>
     </div>
 </form>
 <script src="../js/board.js"></script>

@@ -16,8 +16,23 @@
         <tbody class="text-center">
             <c:forEach var="row" items="${requestScope.list}">
                 <tr class="row-selected">
-                    <th scope="row">${row.seq}</th>
-                    <td class="text-left">${row.subject}</td>
+                    <th scope="row">
+                 	<c:if test="${ row.lev == 0 }">
+                    	<span>${row.seq}</span>
+                    </c:if>
+                    <c:if test="${ row.lev != 0 }">
+                    	<span class="invisible">${row.seq}</span>
+                    </c:if>
+                    </th>
+                    <td class="text-left" style="text-overflow:ellipsis;white-space:nowrap;word-wrap:normal;width:100px;overflow:hidden;">
+	                    <c:if test="${ row.lev != 0 }">
+	                    	<c:forEach var="i" begin="1" end="${row.lev}">
+	                    	&nbsp;&nbsp;&nbsp;
+	                    	</c:forEach>
+	                    	<img src="../img/reply.png" width="25px">
+	                    </c:if>
+	                    ${row.subject}
+                    </td>
                     <td>${row.id}</td>
                     <td>${row.logtime}</td>
                     <td>${row.hit}</td>

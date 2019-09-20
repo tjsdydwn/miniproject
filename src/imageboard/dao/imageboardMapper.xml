@@ -29,5 +29,12 @@
 	<select id="getBoard" parameterType="Integer" resultType="imageboard">
 		SELECT * FROM imageboard WHERE seq = #{seq}
 	</select>
-
+	
+	<delete id="delete" parameterType="java.util.ArrayList">
+		DELETE FROM imageboard WHERE seq in (
+			<foreach collection="array" item="item" index="index" separator=",">
+				${item}
+			</foreach>
+		)
+	</delete>
 </mapper>

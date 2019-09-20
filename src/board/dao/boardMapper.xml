@@ -10,7 +10,7 @@
 		WHERE rn >= #{startNum} and rn <= #{endNum}
 		]]>
 	</select>
-	
+
 	<select id="getBySearch" parameterType="Map" resultType="board">
 		<![CDATA[
 		SELECT * FROM 
@@ -18,9 +18,11 @@
 		WHERE rn >= #{startNum} and rn <= #{endNum}
 		]]>
 	</select>
-	
-	<select id="getCountBySearch" parameterType="Map" resultType="Integer">
-		SELECT count(*) FROM board WHERE ${category} like '%${keyword}%'
+
+	<select id="getCountBySearch" parameterType="Map"
+		resultType="Integer">
+		SELECT count(*) FROM board WHERE ${category} like
+		'%${keyword}%'
 	</select>
 
 	<select id="getCount" resultType="Integer">
@@ -28,7 +30,8 @@
 	</select>
 
 	<select id="getBoard" parameterType="Integer" resultType="board">
-		SELECT *
+		SELECT
+		*
 		FROM board WHERE seq = ${seq}
 	</select>
 
@@ -37,6 +40,32 @@
 		VALUES
 		(seq_board.nextVal,#{id},#{name},#{email},#{subject},#{content},seq_board.currVal,0,0,0,0,0,sysdate)
 	</insert>
+
+	<insert id="writeReply" parameterType="board">
+		INSERT INTO board
+		VALUES
+		(seq_board.nextVal,#{id},#{name},#{email},#{subject},#{content},#{ref},#{lev},#{step},#{pseq},0,0,sysdate)
+	</insert>
+
+	<update id="stepUp" parameterType="board">
+		UPDATE board SET step = step+1
+		WHERE ref = #{ref} AND step > #{step}
+	</update>
+
+	<update id="replyUp" parameterType="board">
+		UPDATE board SET reply =
+		reply + 1 WHERE seq = #{pseq}
+	</update>
+
+	<update id="replyDown" parameterType="board">
+		UPDATE board SET reply =
+		reply - 1 WHERE seq = #{seq}
+	</update>
+
+	<update id="addTitle" parameterType="board">
+		UPDATE board SET subject =
+		'[원글이 삭제된 답글]' || subject WHERE pseq = #{seq}
+	</update>
 
 	<update id="modify" parameterType="board">
 		UPDATE board SET subject =
@@ -47,9 +76,18 @@
 		UPDATE board SET hit = hit +
 		1 WHERE seq = #{seq}
 	</update>
-	
+
 	<delete id="delete" parameterType="Integer">
-		DELETE from board WHERE seq = #{seq}
+		DELETE from board WHERE seq =
+		#{seq}
+	</delete>
+	
+	<delete id="boardDelete" parameterType="Integer">
+		begin
+			UPDATE board SET reply = reply - 1 WHERE seq = (SELECT pseq FROM board WHERE seq = #{seq});
+			UPDATE board SET subject = '[원글이 삭제된 답글]' || subject WHERE pseq = #{seq};
+			DELETE FROM board WHERE seq = #{seq};
+		end;
 	</delete>
 
 </mapper>
